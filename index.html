@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+    <html>
+    <body>
+
+        <p>Enter a Word</p>
+
+        <form >
+            Enter: <input type="text" id = "input">
+            <input type="submit" value="Submit" id = "Submit">
+          
+            </form>
+            Number of Characters:
+            <p id = "characters"></p>
+            Number of Spaces:
+            <p id = "spaces"></p>
+            Character Count:
+            <p id = "characterCount"></p>
+            Word Count:
+            <p id = "wordCount"></p>
+
+        <script>
+        document.getElementById('Submit').addEventListener("click", myFunction);
+        function myFunction(e) {
+            e.preventDefault();
+            
+        
+            var input = document.getElementById("input").value.trim()
+            var spaces = input.split(" ").length - 1
+            var characters = input.replace(/\s/g,'').length
+            var char = {}
+            words = input.split(" ")
+
+            document.getElementById("spaces").innerHTML = spaces
+            document.getElementById("characters").innerHTML = characters
+            let characterCount = ""
+            character = input.replace(/\s/g,'')
+            for (let i in character) {
+                
+                if (character[i] in char) {
+                    char[character[i]] += 1
+                }
+                else {
+                    char[character[i]] = 1
+                }
+            }
+          
+            for (const [key, value] of Object.entries(char)) {
+                
+                    characterCount += (key + ":" + value + "<br>")
+            }
+            
+            arr = []
+            for (let j in words) {
+                w = words[j]
+                w.replace(/[\W_]+/g," ");
+                if (w.length > 2) {
+                    first = w[0]
+                    second = w[1]
+                    for (let i = 2; i < w.length; i++) {
+                        third = w[i]
+                        if (first == second && second == third) {
+                            arr.push(w)
+                            break
+                        }
+                        first = second
+                        second = third
+
+                    }
+                }
+            }
+            
+            if (arr.length > 0) {
+                invalidWords = arr.toString()
+                alert("Invalid Words: " + invalidWords)
+            }
+            document.getElementById("characterCount").innerHTML = characterCount
+            document.getElementById("wordCount").innerHTML = words.length
+
+
+      
+        }
+        </script>
+
+    </body>
+</html>
