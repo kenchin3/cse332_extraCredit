@@ -1,13 +1,14 @@
 <!DOCTYPE html>
     <html>
     <body>
-
-        <p>Enter a Word</p>
+        <div style="text-align:center; font-weight:bold; border: 1px solid black;" >
+        <h1>Enter a Word</h1>
 
         <form >
-            Enter: <input type="text" id = "input">
+            Enter Here: <input type="text" id = "input">
             <input type="submit" value="Submit" id = "Submit">
-          
+            <br>
+            </br>
             </form>
             Number of Characters:
             <p id = "characters"></p>
@@ -17,8 +18,10 @@
             <p id = "characterCount"></p>
             Word Count:
             <p id = "wordCount"></p>
-
-        <script>
+        </div>
+    </form>
+       
+    <script>
         document.getElementById('Submit').addEventListener("click", myFunction);
         function myFunction(e) {
             e.preventDefault();
@@ -33,7 +36,7 @@
             document.getElementById("spaces").innerHTML = spaces
             document.getElementById("characters").innerHTML = characters
             let characterCount = ""
-            character = input.replace(/\s/g,'')
+            character = input.replace(/\s/g,'').toLowerCase()
             for (let i in character) {
                 
                 if (character[i] in char) {
